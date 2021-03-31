@@ -33,9 +33,40 @@ Data Structures are the ways to organize data, read them, and work with them. Th
 ---
 
 ## Web Access
+Web Access section is about web crawling on html, and xml based sites.
+Download [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) to make it easy reading html tags.
 
-```html
-    <p>dummy code</p>
+#### Crawling HTML Sites
+```python
+    # For crawling html sites
+    import urllib.request, urllib.parse, urllib.error
+    from bs4 import BeautifulSoup
+    import ssl
+
+    # Ignore SSl certificate errors
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+
+    # Opening url content
+    url = 'https://en.wikipedia.org/wiki/Anime'
+    html = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(html, 'html.parser')
+```
+
+#### Crawling XML Sites
+```python
+  import urllib.request, urllib.parse, urllib.error
+  import ssl
+
+  # Ignore SSL certificate errors
+  ctx = ssl.create_default_context()
+  ctx.check_hostname = False
+  ctx.verify_mode = ssl.CERT_NONE
+
+  # getting data
+  url = 'http://py4e-data.dr-chuck.net/comments_1187247.xml'
+  data = urllib.request.urlopen(url).read()
 ```
 
 [Back To The Top](#python-for-everybody)
